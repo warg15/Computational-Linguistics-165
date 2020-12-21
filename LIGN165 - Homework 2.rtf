@@ -1,0 +1,143 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2511
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh34860\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 ;;William Argus\
+;;A12802324\
+\
+;;Problem 1\
+(defn sequence-to-power [x n]\
+  (if (> n 0)\
+     (concat (sequence-to-power x (- n 1)) x  )\
+    )\
+  )\
+;;(sequence-to-power (list 'abz 'b 2) 4)\
+\
+;;Problem 2\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 ;;note that this function is derived in lecture and is used here, \
+;;credit to Leon Bergen\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 (defn prefix? [pr str] \
+  (if (> (count pr) (count str))\
+    false\
+    (if (empty? pr)\
+      true\
+      (if (= (first pr) (first str))\
+        (prefix? (rest pr) (rest str))\
+        false))))\
+(defn in-L? [x]\
+  (if (empty? x)\
+    true\
+    (if (prefix? '(a) x)\
+      (in-L? (rest x))\
+      false)))\
+;;(in-L? (list 'a 'a 'a))\
+\
+;;Problem 3\
+(defn sequence-to-power [x n]\
+  (if (> n 0)\
+     (concat (sequence-to-power x (- n 1)) x  )\
+    )\
+  )\
+(defn generate-an-bn [k]\
+  (concat (sequence-to-power (list 'a) k) (sequence-to-power (list 'b) k)  ) \
+)\
+;;(generate-an-bn 5)\
+\
+;;Problem 4\
+(defn reverse [l]\
+              (if (empty? l)\
+                '()\
+                (\
+                 concat (reverse (rest l))  (cons (first l) '())\
+                 )  \
+               \
+                )\
+ )\
+\
+(defn remove-last-element [l]\
+  (reverse (rest (reverse l) ) )\
+  \
+  )\
+\
+;;Problem 5\
+(defn remove-last-element [l]\
+  (reverse (rest (reverse l) ) )\
+  )\
+\
+(defn recognize-an-bn [str]\
+  (if (empty? str) \
+    true\
+    (if (not= (first str) 'a)\
+      false\
+      (if (not= (last str) 'b) \
+        false\
+        (if (odd? (count str))\
+        false\
+           (if (even? (count str))\
+              (recognize-an-bn (rest   (remove-last-element str)     )) \
+        )\
+      )\
+     )\
+    )\
+  )\
+  )\
+;;(recognize-an-bn (list 'a 'a 'a 'b 'b 'b))\
+\
+;;Problem 6\
+(defn concat-L-A [l a]\
+  (if (= (count l) 1)\
+    (list (concat  (first l) a)    )\
+  (cons (concat (first l) a ) (concat-L-A(rest l) a) )\
+  ) \
+)\
+;;(concat-L-A (list (list 'a 'a) (list 3 45 6 7 878 7 7 66)(list 'b 'b)\
+;; (list 2 4)(list 3 4)) (list 'a) )\
+\
+;;Problem 7\
+;;Language A: (list (list \'91a \'91a) )\
+;;Language B: (list (list \'91a) )\
+;;concat(A,B) = concat(B,A) = (list (list \'91a \'91a \'91a) )\
+\
+;;Problem 8\
+;;Language A: (list (list \'91a \'91b \'91c))\
+;;Language B: (list (list \'91d) (list  \'91k) )\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 ;;concat(A,B) = (list (list \'91a \'91b \'91c \'91d) (list \'91a \'91b \'91c \'91k) )\
+;;concat(B,A) = (list (list \'91d \'91a \'91b \'91c) (list \'91k \'91a \'91b \'91c) )\
+;;Clearly, concat(A,B) not equal concat(B,A) \
+\
+;;Problem 9\
+;;Language: (list \'92() )\
+;;ie the empty language is the only one that meets this property, as \
+;; if the language had any strings, the lengths would be changed,\
+;; making there no way that the language would be preserved if concatenated with \
+;; itself\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}
